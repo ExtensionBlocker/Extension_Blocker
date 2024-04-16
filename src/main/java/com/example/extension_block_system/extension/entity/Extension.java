@@ -40,4 +40,8 @@ public class Extension extends BaseEntity {
                 .type(ExtensionType.getRoleByName(registerExtensionReq.getType()))
                 .build();
     }
+
+    public void remove() {
+        setIsEnable(false);
+    }
 }

@@ -6,6 +6,7 @@ import com.example.extension_block_system.extension.service.ExtensionServiceImpl
 import com.example.extension_block_system.global.response.ResponseCustom;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -44,4 +45,17 @@ public class ExtensionController {
         return ResponseCustom.OK(extensionService.getCustomExtension());
     }
 
+
+    @Operation(summary = "커스텀 확장자 삭제", description = "커스텀 확장자를 삭제한다..")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "(S0001)확장자 삭제 성공"),
+            @ApiResponse(responseCode = "400", description = "(E0007)확장자를 찾을 수 없습니다.", content = @Content(schema = @Schema(implementation = ResponseCustom.class)))
+    })
+    @DeleteMapping("{extensionId}")
+    public ResponseCustom removeCustomExtension(
+            @Parameter(description = "(Long) 확장자 Id", example = "1") @PathVariable Long extensionId)
+    {
+        extensionService.removeCustomExtension(extensionId);
+        return ResponseCustom.OK();
+    }
 }

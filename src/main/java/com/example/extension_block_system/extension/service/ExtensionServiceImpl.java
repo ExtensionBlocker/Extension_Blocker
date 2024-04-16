@@ -33,4 +33,11 @@ public class ExtensionServiceImpl implements ExtensionService {
     public GetCustomExtensionRes getCustomExtension() {
         return GetCustomExtensionRes.toDto(extensionRepository.findByTypeAndIsEnable(ExtensionType.CUSTOM, true));
     }
+
+    @Override
+    @Transactional
+    public void removeCustomExtension(Long extensionId) {
+        Extension extension = extensionRepository.findByExtensionIdAndIsEnable(extensionId, true).orElseThrow(() -> new BaseException(BaseResponseCode.EXTENSION_NOT_FOUND));
+        extension.remove();
+    }
 }

@@ -21,7 +21,8 @@ public enum BaseResponseCode {
     NOT_EMPTY_EXTENSION_TYPE("E0003", HttpStatus.BAD_REQUEST, "확장자 타입을 입력해주세요."),
     INVALID_EXTENSION_FORMAT("E0004", HttpStatus.BAD_REQUEST, "확장자 형식을 확인해주세요."),
     ALREADY_REGISTER_EXTENSION("E0005", HttpStatus.BAD_REQUEST, "이미 등록된 확장자입니다."),
-    EXTENSION_SIZE_OVER("E0006", HttpStatus.BAD_REQUEST, "확장자 이름은 20자를 넘을 수 없습니다.");
+    EXTENSION_SIZE_OVER("E0006", HttpStatus.BAD_REQUEST, "확장자 이름은 20자를 넘을 수 없습니다."),
+    EXTENSION_NOT_FOUND("E0007", HttpStatus.NOT_FOUND, "확장자를 찾을 수 없습니다.");
 
 
     public final String code;

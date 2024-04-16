@@ -8,4 +8,6 @@ public interface ExtensionService {
     void registerExtension(RegisterExtensionReq registerExtensionReq);
 
     GetCustomExtensionRes getCustomExtension();
+
+    void removeCustomExtension(Long extensionId);
 }
