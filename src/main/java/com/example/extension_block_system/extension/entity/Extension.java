@@ -1,10 +1,9 @@
 package com.example.extension_block_system.extension.entity;
 
 import com.example.extension_block_system.global.entity.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +16,12 @@ public class Extension extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long extensionId;
+
+    @NotNull
+    @Size(max = 20)
+    private String name;
+
+    @NotNull
+    @Enumerated(value = EnumType.STRING)
+    private ExtensionType type;
 }

@@ -1,6 +1,6 @@
 package com.example.extension_block_system.global.exception;
 
-import com.example.everyminute.global.response.ResponseCustom;
+import com.example.extension_block_system.global.response.ResponseCustom;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
