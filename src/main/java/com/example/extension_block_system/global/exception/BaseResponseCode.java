@@ -16,7 +16,11 @@ public enum BaseResponseCode {
     NO_AUTHENTICATION("G0002", HttpStatus.FORBIDDEN, "접근 권한이 없습니다."),
 
     // extension
-    EXTENSION_TYPE_NOT_FOUNT("E0001", HttpStatus.NOT_FOUND, "확장자 타입(고정 or 커스텀)을 찾을 수 없습니다.");
+    EXTENSION_TYPE_NOT_FOUNT("E0001", HttpStatus.NOT_FOUND, "확장자 타입(고정 or 커스텀)을 찾을 수 없습니다."),
+    NOT_EMPTY_EXTENSION_NAME("E0002", HttpStatus.BAD_REQUEST, "확장자 이름을 입력해주세요."),
+    NOT_EMPTY_EXTENSION_TYPE("E0003", HttpStatus.BAD_REQUEST, "확장자 타입을 입력해주세요."),
+    INVALID_EXTENSION_FORMAT("E0004", HttpStatus.BAD_REQUEST, "확장자 형식을 확인해주세요.");
+
 
     public final String code;
     public final HttpStatus status;
