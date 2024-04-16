@@ -1,6 +1,7 @@
 package com.example.extension_block_system.extension.controller;
 
 import com.example.extension_block_system.extension.dto.request.RegisterExtensionReq;
+import com.example.extension_block_system.extension.dto.response.GetCustomExtensionRes;
 import com.example.extension_block_system.extension.service.ExtensionServiceImpl;
 import com.example.extension_block_system.global.response.ResponseCustom;
 import io.swagger.annotations.Api;
@@ -11,10 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "파일 확장자 관련 API")
 @RestController
@@ -34,6 +32,16 @@ public class ExtensionController {
     {
         extensionService.registerExtension(registerExtensionReq);
         return ResponseCustom.OK();
+    }
+
+    @Operation(summary = "커스텀 확장자 조회", description = "커스텀 확장자를 조회한다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "(S0001)확장자 조회 성공"),
+    })
+    @GetMapping("")
+    public ResponseCustom<GetCustomExtensionRes> getCustomExtension()
+    {
+        return ResponseCustom.OK(extensionService.getCustomExtension());
     }
 
 }
