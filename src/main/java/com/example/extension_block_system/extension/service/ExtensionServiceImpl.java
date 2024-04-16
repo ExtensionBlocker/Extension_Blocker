@@ -5,13 +5,12 @@ import com.example.extension_block_system.extension.dto.response.GetCustomExtens
 import com.example.extension_block_system.extension.entity.Extension;
 import com.example.extension_block_system.extension.entity.ExtensionType;
 import com.example.extension_block_system.extension.repository.ExtensionRepository;
+import com.example.extension_block_system.global.Constants;
 import com.example.extension_block_system.global.exception.BaseException;
 import com.example.extension_block_system.global.exception.BaseResponseCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +22,12 @@ public class ExtensionServiceImpl implements ExtensionService {
     @Override
     @Transactional
     public void registerExtension(RegisterExtensionReq registerExtensionReq) {
+
+        // 커스텀 확장자 최대 등록 개수 체크
+        if (ExtensionType.getRoleByName(registerExtensionReq.getType()).equals(ExtensionType.CUSTOM)) {
+            if(extensionRepository.countByTypeAndIsEnable(ExtensionType.CUSTOM, true) >= Constants.Extension.SAVE_MAX_SIZE)
+                throw new BaseException(BaseResponseCode.SAVE_EXTENSION_MAX_SIZE_OVER);
+        }
         // 확장자 중복 체크
         Boolean exists = extensionRepository.existsByNameAndIsEnable(registerExtensionReq.getName(), true);
         if(exists) throw new BaseException(BaseResponseCode.ALREADY_REGISTER_EXTENSION);
