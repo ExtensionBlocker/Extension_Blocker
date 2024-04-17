@@ -16,4 +16,5 @@ public interface ExtensionRepository extends JpaRepository<Extension, Long> {
     Optional<Extension> findByExtensionIdAndIsEnable(Long extensionId, Boolean isEnable);
 
     Integer countByTypeAndIsEnable(ExtensionType type, Boolean isEnable);
+
 }

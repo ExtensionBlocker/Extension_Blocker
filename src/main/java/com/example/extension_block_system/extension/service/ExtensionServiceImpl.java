@@ -1,6 +1,7 @@
 package com.example.extension_block_system.extension.service;
 
 import com.example.extension_block_system.extension.dto.request.RegisterExtensionReq;
+import com.example.extension_block_system.extension.dto.response.GetCustomExtensionCountRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionRes;
 import com.example.extension_block_system.extension.entity.Extension;
 import com.example.extension_block_system.extension.entity.ExtensionType;
@@ -44,5 +45,10 @@ public class ExtensionServiceImpl implements ExtensionService {
     public void removeCustomExtension(Long extensionId) {
         Extension extension = extensionRepository.findByExtensionIdAndIsEnable(extensionId, true).orElseThrow(() -> new BaseException(BaseResponseCode.EXTENSION_NOT_FOUND));
         extension.remove();
+    }
+
+    @Override
+    public GetCustomExtensionCountRes getCustomExtensionCount() {
+        return GetCustomExtensionCountRes.toDto(extensionRepository.countByTypeAndIsEnable(ExtensionType.CUSTOM, true));
     }
 }
