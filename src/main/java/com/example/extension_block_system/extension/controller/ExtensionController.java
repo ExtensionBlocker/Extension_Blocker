@@ -1,6 +1,7 @@
 package com.example.extension_block_system.extension.controller;
 
 import com.example.extension_block_system.extension.dto.request.RegisterExtensionReq;
+import com.example.extension_block_system.extension.dto.response.FixedCustomRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionCountRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionRes;
 import com.example.extension_block_system.extension.service.ExtensionServiceImpl;
@@ -67,5 +68,14 @@ public class ExtensionController {
     public ResponseCustom<GetCustomExtensionCountRes> getCustomExtensionCount()
     {
         return ResponseCustom.OK(extensionService.getCustomExtensionCount());
+    }
+
+    @Operation(summary = "커스텀 확장자 개수 조회", description = "커스텀 확장자 개수를 조회한다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "(S0001)커스텀 확장자 개수 조회 성공"),
+    })
+    @GetMapping("/fixed")
+    public ResponseCustom<FixedCustomRes> getFixedCustom() {
+        return ResponseCustom.OK(extensionService.getFixedCustom());
     }
 }
