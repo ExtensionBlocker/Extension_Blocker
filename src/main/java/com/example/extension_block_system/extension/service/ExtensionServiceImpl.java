@@ -22,7 +22,7 @@ public class ExtensionServiceImpl implements ExtensionService {
 
     @Override
     @Transactional
-    public void registerExtension(RegisterExtensionReq registerExtensionReq) {
+    public Long registerExtension(RegisterExtensionReq registerExtensionReq) {
 
         // 커스텀 확장자 최대 등록 개수 체크
         if (ExtensionType.getRoleByName(registerExtensionReq.getType()).equals(ExtensionType.CUSTOM)) {
@@ -32,7 +32,7 @@ public class ExtensionServiceImpl implements ExtensionService {
         // 확장자 중복 체크
         Boolean exists = extensionRepository.existsByNameAndIsEnable(registerExtensionReq.getName(), true);
         if(exists) throw new BaseException(BaseResponseCode.ALREADY_REGISTER_EXTENSION);
-        extensionRepository.save(Extension.of(registerExtensionReq));
+        return extensionRepository.save(Extension.of(registerExtensionReq)).getExtensionId();
     }
 
     @Override
@@ -42,9 +42,9 @@ public class ExtensionServiceImpl implements ExtensionService {
 
     @Override
     @Transactional
-    public void removeCustomExtension(Long extensionId) {
+    public void removeExtension(Long extensionId) {
         Extension extension = extensionRepository.findByExtensionIdAndIsEnable(extensionId, true).orElseThrow(() -> new BaseException(BaseResponseCode.EXTENSION_NOT_FOUND));
-        extension.remove();
+        extensionRepository.delete(extension);
     }
 
     @Override

@@ -30,10 +30,9 @@ public class ExtensionController {
             @ApiResponse(responseCode = "400", description = "(E0005)이미 등록된 확장자 입니다.", content = @Content(schema = @Schema(implementation = ResponseCustom.class)))
     })
     @PostMapping("")
-    public ResponseCustom registerExtension(@RequestBody @Valid RegisterExtensionReq registerExtensionReq)
+    public ResponseCustom<Long> registerExtension(@RequestBody @Valid RegisterExtensionReq registerExtensionReq)
     {
-        extensionService.registerExtension(registerExtensionReq);
-        return ResponseCustom.OK();
+        return ResponseCustom.OK(extensionService.registerExtension(registerExtensionReq));
     }
 
     @Operation(summary = "커스텀 확장자 조회", description = "커스텀 확장자를 조회한다.")
@@ -47,16 +46,16 @@ public class ExtensionController {
     }
 
 
-    @Operation(summary = "커스텀 확장자 삭제", description = "커스텀 확장자를 삭제한다..")
+    @Operation(summary = "확장자 삭제", description = "확장자를 삭제한다..")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "(S0001)확장자 삭제 성공"),
             @ApiResponse(responseCode = "400", description = "(E0007)확장자를 찾을 수 없습니다.", content = @Content(schema = @Schema(implementation = ResponseCustom.class)))
     })
     @DeleteMapping("{extensionId}")
-    public ResponseCustom removeCustomExtension(
+    public ResponseCustom removeExtension(
             @Parameter(description = "(Long) 확장자 Id", example = "1") @PathVariable Long extensionId)
     {
-        extensionService.removeCustomExtension(extensionId);
+        extensionService.removeExtension(extensionId);
         return ResponseCustom.OK();
     }
 
