@@ -70,9 +70,9 @@ public class ExtensionController {
         return ResponseCustom.OK(extensionService.getCustomExtensionCount());
     }
 
-    @Operation(summary = "커스텀 확장자 개수 조회", description = "커스텀 확장자 개수를 조회한다.")
+    @Operation(summary = "고정 확장자 목록 조회", description = "고정 확장자 목록을 조회한다.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "(S0001)커스텀 확장자 개수 조회 성공"),
+            @ApiResponse(responseCode = "200", description = "(S0001)고정 확장자 목록 조회 성공"),
     })
     @GetMapping("/fixed")
     public ResponseCustom<FixedCustomRes> getFixedCustom() {

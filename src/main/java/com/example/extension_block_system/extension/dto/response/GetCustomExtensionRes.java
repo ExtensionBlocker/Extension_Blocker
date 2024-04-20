@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Builder
 public class GetCustomExtensionRes {
 
-    @Schema(type = "List<String>", description = "커스텀 확장자 목록 리스트", example = "bat, cmd, com ...")
+    @Schema(type = "List<String>", description = "커스텀 확장자 목록 리스트", example = "[{extensionId : 1, name : jpg}, {extensionId : 2, name : png}]")
     List<CustomExtension> customExtensionList;
 
     public static GetCustomExtensionRes toDto(List<Extension> customExtensions) {
