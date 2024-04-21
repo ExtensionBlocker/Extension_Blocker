@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
 
 @Data
 @Builder
-public class FixedCustomRes {
+public class FixedExtensionRes {
 
     @Schema(type = "List<String>", description = "고정 확장자 리스트", example = "bat, cmd, com ...")
     private List<String> name;
 
-    public static FixedCustomRes toDto(List<Extension> fixedCustoms) {
-        return FixedCustomRes.builder()
-                .name(fixedCustoms.stream().map(Extension::getName).collect(Collectors.toList()))
+    public static FixedExtensionRes toDto(List<Extension> fixedExtension) {
+        return FixedExtensionRes.builder()
+                .name(fixedExtension.stream().map(Extension::getName).collect(Collectors.toList()))
                 .build();
     }
 }

@@ -1,7 +1,7 @@
 package com.example.extension_block_system.extension.service;
 
 import com.example.extension_block_system.extension.dto.request.RegisterExtensionReq;
-import com.example.extension_block_system.extension.dto.response.FixedCustomRes;
+import com.example.extension_block_system.extension.dto.response.FixedExtensionRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionCountRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionRes;
 import com.example.extension_block_system.extension.entity.Extension;
@@ -54,7 +54,7 @@ public class ExtensionServiceImpl implements ExtensionService {
     }
 
     @Override
-    public FixedCustomRes getFixedCustom() {
-        return FixedCustomRes.toDto(extensionRepository.findByTypeAndIsEnable(ExtensionType.FIX, true));
+    public FixedExtensionRes getFixedCustom() {
+        return FixedExtensionRes.toDto(extensionRepository.findByTypeAndIsEnable(ExtensionType.FIX, true));
     }
 }

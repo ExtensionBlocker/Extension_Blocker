@@ -1,7 +1,7 @@
 package com.example.extension_block_system.extension.controller;
 
 import com.example.extension_block_system.extension.dto.request.RegisterExtensionReq;
-import com.example.extension_block_system.extension.dto.response.FixedCustomRes;
+import com.example.extension_block_system.extension.dto.response.FixedExtensionRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionCountRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionRes;
 import com.example.extension_block_system.extension.service.ExtensionServiceImpl;
@@ -75,7 +75,7 @@ public class ExtensionController {
             @ApiResponse(responseCode = "200", description = "(S0001)고정 확장자 목록 조회 성공"),
     })
     @GetMapping("/fixed")
-    public ResponseCustom<FixedCustomRes> getFixedCustom() {
+    public ResponseCustom<FixedExtensionRes> getFixedCustom() {
         return ResponseCustom.OK(extensionService.getFixedCustom());
     }
 }
