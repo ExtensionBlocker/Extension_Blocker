@@ -4,6 +4,7 @@ import com.example.extension_block_system.extension.dto.request.RegisterExtensio
 import com.example.extension_block_system.extension.dto.response.FixedExtensionRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionCountRes;
 import com.example.extension_block_system.extension.dto.response.GetCustomExtensionRes;
+import com.example.extension_block_system.extension.service.ExtensionService;
 import com.example.extension_block_system.extension.service.ExtensionServiceImpl;
 import com.example.extension_block_system.global.response.ResponseCustom;
 import io.swagger.annotations.Api;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/extensions")
 public class ExtensionController {
 
-    private final ExtensionServiceImpl extensionService;
+    private final ExtensionService extensionService;
 
     @Operation(summary = "확장자 추가", description = "확장자를 추가한다.")
     @ApiResponses(value = {
